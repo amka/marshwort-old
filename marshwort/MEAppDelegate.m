@@ -15,8 +15,6 @@
 - (id)init
 {
     if(self = [super init]) {
-        languagesFromList = [[NSMutableArray alloc] init];
-        languagesToList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -24,31 +22,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    [self getLangs];
-}
-
-- (void)getLangs
-{
-    NSURL *url = [NSURL URLWithString:@"http://translate.yandex.net/api/v1/tr.json/getLangs"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        for(NSString *dir in [JSON objectForKey:@"dirs"])
-        {
-            NSString *from = [dir substringToIndex:2];
-            NSString *to = [dir substringFromIndex:3];
-            if (![languagesFromList containsObject:from] == NO)
-                [languagesFromList addObject:from];
-
-            if ([languagesToList containsObject:to] == NO)
-                [languagesToList addObject:to];
-        }
-        [languagesFromList sortUsingSelector:@selector(compare:)];
-        [languagesToList sortUsingSelector:@selector(compare:)];
-//        NSLog(@"Langs: %@", languagesToList);
-    } failure:nil];
-    
-    [operation start];
 }
 
 - (void)detectLang:(NSString *)text withFormat:(NSString *)format
@@ -63,13 +36,24 @@
     [operation start];
 }
 
-- (void)translate:(NSString *)text fromLanguage:(NSString *)language withFormat:(NSString *)format
+- (void)translate:(NSString *)text fromLanguage:(NSString *)from toLanguage:(NSString *)to withFormat:(NSString *)format
 {
     NSURL *url = [NSURL URLWithString:@"http://translate.yandex.net/api/v1/tr.json/translate"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                    cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                timeoutInterval:60.0];
+
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *postString = [NSString stringWithFormat:@"lang=%@-%@&text=%@", from, to, text];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            NSLog(@"Langs: %@", JSON);
+
+        if ([[JSON objectForKey:@"text"] objectAtIndex:0]) {
+            [_translatedTextView setString:[[JSON objectForKey:@"text"] objectAtIndex:0]];
+        }
+        
     } failure:nil];
     
     [operation start];
@@ -80,16 +64,18 @@
     if (!textChangedTimer)
         textChangedTimer = [NSTimer scheduledTimerWithTimeInterval:0.5f
                                                             target:self
-                                                          selector:@selector(translateIt)
+                                                          selector:@selector(translateClicked:)
                                                           userInfo:nil
                                                            repeats:NO];
 }
 
-- (void)translateIt
-{
+- (IBAction)translateClicked:(id)sender {
     textChangedTimer = nil;
-    NSLog(@"%@", [_originTextView string]);
-    NSLog(@"translating..");
+    NSLog(@"translating %@->%@", [[_langFromBox selectedItem] title], [[_langToBox selectedItem] title]);
+    
+    [self translate:[_originTextView string]
+       fromLanguage:[[_langFromBox selectedItem] title]
+         toLanguage:[[_langToBox selectedItem] title]
+         withFormat:@"plain"];
 }
-
 @end

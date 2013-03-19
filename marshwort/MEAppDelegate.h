@@ -9,10 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MEAppDelegate : NSObject <NSApplicationDelegate, NSTextViewDelegate> {
-    NSMutableArray *languagesFromList;
-    NSMutableArray *languagesToList;
+//    NSMutableArray *languagesFrom;
+//    NSMutableArray *languagesTo;
     NSTimer *textChangedTimer;
 }
+
+//@property (copy) NSMutableArray *languagesFrom;
+//@property (copy) NSMutableArray *languagesTo;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSPopUpButton *langFromBox;
@@ -21,9 +24,8 @@
 @property (unsafe_unretained) IBOutlet NSTextView *originTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *translatedTextView;
 
-
-- (void)getLangs;
 - (void)detectLang:(NSString *)text withFormat:(NSString *)format;
 - (void)translate:(NSString *)text fromLanguage:(NSString *)language withFormat:(NSString *)format;
+- (IBAction)translateClicked:(id)sender;
 
 @end
