@@ -71,7 +71,7 @@
 
 - (IBAction)translateClicked:(id)sender {
     textChangedTimer = nil;
-    NSLog(@"translating %@->%@", [[_langFromBox selectedItem] title], [[_langToBox selectedItem] title]);
+//    NSLog(@"translating %@->%@", [[_langFromBox selectedItem] title], [[_langToBox selectedItem] title]);
     
     [self translate:[_originTextView string]
        fromLanguage:[[_langFromBox selectedItem] title]

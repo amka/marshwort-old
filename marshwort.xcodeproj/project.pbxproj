@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A91033CD16F980C300956911 /* red_cupcake_128.icns in Resources */ = {isa = PBXBuildFile; fileRef = A91033CC16F980C300956911 /* red_cupcake_128.icns */; };
 		A98D32ED16F71B8F0000261F /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A98D32DB16F71B8F0000261F /* AFHTTPClient.m */; };
 		A98D32EE16F71B8F0000261F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A98D32DD16F71B8F0000261F /* AFHTTPRequestOperation.m */; };
 		A98D32EF16F71B8F0000261F /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A98D32DF16F71B8F0000261F /* AFImageRequestOperation.m */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A91033CC16F980C300956911 /* red_cupcake_128.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = red_cupcake_128.icns; sourceTree = "<group>"; };
+		A91033CE16F980D200956911 /* marshwort.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = marshwort.entitlements; sourceTree = "<group>"; };
 		A98D32DA16F71B8F0000261F /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		A98D32DB16F71B8F0000261F /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		A98D32DC16F71B8F0000261F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		A9E57D4D16F714F200B9ABF9 = {
 			isa = PBXGroup;
 			children = (
+				A91033CC16F980C300956911 /* red_cupcake_128.icns */,
 				A98D32F616F71DD10000261F /* SystemConfiguration.framework */,
 				A9E57D5F16F714F200B9ABF9 /* marshwort */,
 				A9E57D5816F714F200B9ABF9 /* Frameworks */,
@@ -143,6 +147,7 @@
 		A9E57D5F16F714F200B9ABF9 /* marshwort */ = {
 			isa = PBXGroup;
 			children = (
+				A91033CE16F980D200956911 /* marshwort.entitlements */,
 				A98D32D916F71B8F0000261F /* AFNetworking */,
 				A9E57D6B16F714F200B9ABF9 /* MEAppDelegate.h */,
 				A9E57D6C16F714F200B9ABF9 /* MEAppDelegate.m */,
@@ -221,6 +226,7 @@
 				A9E57D6416F714F200B9ABF9 /* InfoPlist.strings in Resources */,
 				A9E57D6A16F714F200B9ABF9 /* Credits.rtf in Resources */,
 				A9E57D7016F714F300B9ABF9 /* MainMenu.xib in Resources */,
+				A91033CD16F980C300956911 /* red_cupcake_128.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +348,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "marshwort/marshwort-Prefix.pch";
 				INFOPLIST_FILE = "marshwort/marshwort-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -355,7 +360,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "marshwort/marshwort-Prefix.pch";
 				INFOPLIST_FILE = "marshwort/marshwort-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
