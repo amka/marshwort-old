@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'marshwort' target in the 'marshwort' project
+// Prefix header for all source files of the 'Marshwort' target in the 'Marshwort' project
 //
 
 #ifdef __OBJC__
